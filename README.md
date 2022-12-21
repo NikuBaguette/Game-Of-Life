@@ -1,5 +1,9 @@
 # Game-Of-Life
 
+Requirements:
+You need Python and the library Pygame on your computer
+
+
 How to start:
 Step 1: To play the game you have to run main.py as a python file.
 
