@@ -72,23 +72,24 @@ class Cell:
                 else:
                     around.append(cells[x + i][y + j].state)
         around.pop(4)
-        cooldown = 500
-        if pg.time.get_ticks() - self.update_time > cooldown:
-            count = 0
-            for t in around:
-                if t:
-                    count += 1
+        
+        count = 0
+        for t in around:
+            if t:
+                count += 1
+        if count == 2:
+            self.new_state = self.state
+        elif count == 3:
+            self.new_state = True
+        elif count > 3:
+            self.new_state = False
+        elif count < 2:
+            self.new_state = False
             
-            if count == 2:
-                self.new_state = self.state
-            elif count == 3:
-                self.new_state = True
-            elif count > 3:
-                self.new_state = False
-            elif count < 2:
-                self.new_state = False
             
-            self.update_time = pg.time.get_ticks()
     
     def update_state(self):
-        self.state = self.new_state
+        cooldown = 200
+        if pg.time.get_ticks() - self.update_time > cooldown:
+            self.state = self.new_state
+            self.update_time = pg.time.get_ticks()
