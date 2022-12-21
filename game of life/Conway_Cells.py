@@ -79,14 +79,14 @@ class Cell:
                 if t:
                     count += 1
             
-            if count < 2:
-                self.new_state = False
-            elif count > 4:
-                self.new_state = False
+            if count == 2:
+                self.new_state = self.state
             elif count == 3:
                 self.new_state = True
-            elif count == 2:
-                self.new_state = self.state
+            elif count > 3:
+                self.new_state = False
+            elif count < 2:
+                self.new_state = False
             
             self.update_time = pg.time.get_ticks()
     
