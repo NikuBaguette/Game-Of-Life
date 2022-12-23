@@ -88,8 +88,8 @@ class Cell:
             
             
     
-    def update_state(self):
-        cooldown = 200
+    def update_state(self, cooldown : int = 200):
+        cooldown = cooldown
         if pg.time.get_ticks() - self.update_time > cooldown:
             self.state = self.new_state
             self.update_time = pg.time.get_ticks()

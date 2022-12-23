@@ -6,7 +6,7 @@ sky : tuple = (135,206,235)
 
 size : tuple = (1480, 980)
 
-cell_size : int = int(input("Give me the size of the cells : "))
+cell_size : int = int(input("Give me the size of the cells between 15 and 120 : "))
 
 width : int = int(size[0]/cell_size)
 height : int = int(size[1]/cell_size)
@@ -27,6 +27,9 @@ trigger = False
 cooldown = 500
 update_time = pg.time.get_ticks()
 
+refresh = 200
+refresh_time = 200
+
 running = True
 while running:
     keys = pg.key.get_pressed()
@@ -36,6 +39,15 @@ while running:
         if keys[pg.K_SPACE]:
             trigger = not trigger
             update_time = pg.time.get_ticks()
+        
+    if pg.time.get_ticks() - update_time > refresh_time:
+        if keys[pg.K_UP]:
+            refresh = int(refresh*1.5)
+            update_time = pg.time.get_ticks()
+        
+        if keys[pg.K_DOWN]:
+            refresh = refresh//1.5
+            update_time = pg.time.get_ticks()
     
     if trigger:
         for x in cells:
@@ -44,7 +56,7 @@ while running:
                 
         for x in cells:
             for cell in x:
-                cell.update_state()
+                cell.update_state(refresh)
 
     else:
         for x in cells:
