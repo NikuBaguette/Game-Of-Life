@@ -13,3 +13,7 @@ How to play: \
 Left click: You can color the cells while the game is paused
 
 space: You can decide to run or pause the game
+
+Arrow Up: Increase the refreashing time by 50%
+
+Arrow Down: Decreasing the refreshing time by 50%
